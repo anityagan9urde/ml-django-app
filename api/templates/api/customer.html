@@ -1,0 +1,77 @@
+{%  extends 'api/main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Applicants:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Applicant</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'create_loan' loan.id %}">Apply for Loan</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>Email: {{applicant.email}}</p>
+			<p>Phone: {{applicant.phone}}</p>
+		</div>
+	</div>
+
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Loans</th>
+					<th>Note</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for loan in loans %}
+
+				<tr>
+					<td>{{loans}}</td>
+					<td>{{loans.note}}</td>
+					<td>{{loans.date_created}}</td>
+					<td>{{loans.status}}</td>
+					<td><a class="btn btn-sm btn-info" href="{% url 'update_loan' loan.id %}">Update</a></td>
+
+					<td><a class="btn btn-sm btn-danger" href="{% url 'delete_loan' loan.id %}">Delete</a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
